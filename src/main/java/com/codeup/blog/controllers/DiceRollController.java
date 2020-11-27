@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DiceRollController {
 
+    @GetMapping("/roll-dice")
+    @ResponseBody
+    public void rollDice(){
+        return;
+    }
+
     @GetMapping("/roll-dice/{guess}")
     @ResponseBody
     public int diceGame(@PathVariable int guess, Model model) {
