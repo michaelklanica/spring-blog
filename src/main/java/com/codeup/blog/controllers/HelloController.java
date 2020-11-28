@@ -1,6 +1,7 @@
 package com.codeup.blog.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 // CONTROLLERS
@@ -20,13 +21,13 @@ class HelloController {
         return "Hello from Spring!";
     }
 
-// Example 2: Path Variables
+// Example 2: Path Variables (Example 2 conflicts with Example 4)
 
-    @GetMapping("/hello/{name}")
-    @ResponseBody
-    public String sayHello(@PathVariable String name) {
-        return "Hello " + name + "!";
-    }
+//    @GetMapping("/hello/{name}")
+//    @ResponseBody
+//    public String sayHello(@PathVariable String name) {
+//        return "Hello " + name + "!";
+//    }
 
 // Example 3:
 //      @RequestMapping : longer version of @GetMapping
@@ -37,4 +38,11 @@ class HelloController {
         return number + " plus one is " + (number + 1) + "!";
     }
 
+    // Example 4: Passing Data into Views
+    @GetMapping("/hello/{name}")
+    public String sayHello(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
+
+    }
 }

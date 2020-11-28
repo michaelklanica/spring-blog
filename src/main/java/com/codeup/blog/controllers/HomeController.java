@@ -13,6 +13,9 @@ public class HomeController {
         return "This is the landing page!";
     }
 
+// VIEWS
+//      This example uses Thymeleaf (a templating language for views); see dependency in POM.xml
+
     @GetMapping("/home")
     public String welcome(){
         return "/home";
