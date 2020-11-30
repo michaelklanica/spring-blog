@@ -10,18 +10,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DiceRollController {
 
     @GetMapping("/roll-dice")
-    @ResponseBody
     public void rollDice(){
         return;
     }
 
     @GetMapping("/roll-dice/{guess}")
-    @ResponseBody
-    public int diceGame(@PathVariable int guess, Model model) {
-        int randomDiceThrow = (int) (Math.random() * (6 - 1)) + 1;
+    public String diceGame(@PathVariable int guess, Model model) {
+        int randomDiceThrow = (int) (Math.random() * (7 - 1)) + 1;
         model.addAttribute("roll", randomDiceThrow);
-        return guess;
-
+        model.addAttribute("guess", guess);
+        model.addAttribute("roll", randomDiceThrow);
+        if (randomDiceThrow == guess) {
+            model.addAttribute("result", true);
+            return "roll-dice";
+        } else {
+            model.addAttribute("result", false);
+            return "roll-dice";
+        }
 
     }
 

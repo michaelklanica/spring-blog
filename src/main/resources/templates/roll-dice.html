@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Guess the dice throw</h1>
+<h1>Guess the dice throw: </h1>
 <ul>
     <li><a href="/roll-dice/1">Choose 1</a></li>
     <li><a href="/roll-dice/2">Choose 2</a></li>
@@ -14,5 +14,17 @@
     <li><a href="/roll-dice/5">Choose 5</a></li>
     <li><a href="/roll-dice/6">Choose 6</a></li>
 </ul>
+<div class="alert alert-danger" th:if="${result}">
+    <p>You WIN!</p>
+    <p>You guessed <span th:text="${guess}"></span></p>
+    <p>You rolled <span th:text="${roll}"></span></p>
+</div>
+<div class="alert alert-danger" th:if="${!result}">
+    <p>You lose.</p>
+    <p>You guessed <span th:text="${guess}"></span></p>
+    <p>You rolled <span th:text="${roll}"></span></p>
+</div>
+
+
 </body>
 </html>
