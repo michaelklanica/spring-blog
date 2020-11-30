@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Guess the dice throw: </h1>
+<header th:replace="partials :: header"/>
+<nav th:replace="partials :: navbar" />
+
+<h3>Guess the dice throw: </h3>
 <ul>
     <li><a href="/roll-dice/1">Choose 1</a></li>
     <li><a href="/roll-dice/2">Choose 2</a></li>
@@ -24,6 +27,7 @@
     <p>You guessed <span th:text="${guess}"></span></p>
     <p>You rolled <span th:text="${roll}"></span></p>
 </div>
+<footer th:replace="partials :: footer"/>
 
 
 </body>
