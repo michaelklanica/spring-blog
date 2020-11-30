@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Roll the Dice</title>
 </head>
 <body>
 <header th:replace="partials :: header"/>
@@ -10,23 +10,23 @@
 
 <h3>Guess the dice throw: </h3>
 <ul>
-    <li><a href="/roll-dice/1">Choose 1</a></li>
-    <li><a href="/roll-dice/2">Choose 2</a></li>
-    <li><a href="/roll-dice/3">Choose 3</a></li>
-    <li><a href="/roll-dice/4">Choose 4</a></li>
-    <li><a href="/roll-dice/5">Choose 5</a></li>
-    <li><a href="/roll-dice/6">Choose 6</a></li>
+    <li><a th:href="@{/roll-dice/1}">Choose 1</a></li>
+    <li><a th:href="@{/roll-dice/2}">Choose 2</a></li>
+    <li><a th:href="@{/roll-dice/3}">Choose 3</a></li>
+    <li><a th:href="@{/roll-dice/4}">Choose 4</a></li>
+    <li><a th:href="@{/roll-dice/5}">Choose 5</a></li>
+    <li><a th:href="@{/roll-dice/6}">Choose 6</a></li>
 </ul>
-<div class="alert alert-danger" th:if="${result}">
-    <p>You WIN!</p>
-    <p>You guessed <span th:text="${guess}"></span></p>
-    <p>You rolled <span th:text="${roll}"></span></p>
+<div th:if="${guess}">
+    Your guess was <span th:text="${guess}"></span><br>
+    The rolled number is <span th:text="${roll}"></span>;
 </div>
-<div class="alert alert-danger" th:if="${!result}">
-    <p>You lose.</p>
-    <p>You guessed <span th:text="${guess}"></span></p>
-    <p>You rolled <span th:text="${roll}"></span></p>
-</div>
+
+<h3 th:if="${result}">You Guessed Correctly</h3>
+
+<h3 th:if="${result != null && !result}"> Try again.</h3>
+
+
 <footer th:replace="partials :: footer"/>
 </body>
 </html>

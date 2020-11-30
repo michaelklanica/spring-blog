@@ -16,17 +16,14 @@ public class DiceRollController {
 
     @GetMapping("/roll-dice/{guess}")
     public String diceGame(@PathVariable int guess, Model model) {
+        // FIND RANDOM NUMBER BETWEEN 1 and 6
         int randomDiceThrow = (int) (Math.random() * (7 - 1)) + 1;
+        // COMPARE GUESS TO RANDOM NUMBER
+        // STORE IF NUMBER WAS GUESSED CORRECTLY IN MODEL ATTRIBUTE
         model.addAttribute("guess", guess);
         model.addAttribute("roll", randomDiceThrow);
-        if (randomDiceThrow == guess) {
-            model.addAttribute("result", true);
-            return "roll-dice";
-        } else {
-            model.addAttribute("result", false);
-            return "roll-dice";
-        }
-
+        model.addAttribute("result", guess == randomDiceThrow);
+        return "roll-dice";
     }
 
 
