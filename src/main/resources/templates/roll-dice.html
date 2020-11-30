@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/head :: head('Roll the Dice')">
     <meta charset="UTF-8">
     <title>Roll the Dice</title>
 </head>
 <body>
-<header th:replace="partials :: header"/>
-<nav th:replace="partials :: navbar" />
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Roll the Dice!')"></header>
 
-<h3>Guess the dice throw: </h3>
 <ul>
     <li><a th:href="@{/roll-dice/1}">Choose 1</a></li>
     <li><a th:href="@{/roll-dice/2}">Choose 2</a></li>
@@ -17,6 +16,7 @@
     <li><a th:href="@{/roll-dice/5}">Choose 5</a></li>
     <li><a th:href="@{/roll-dice/6}">Choose 6</a></li>
 </ul>
+
 <div th:if="${guess}">
     Your guess was <span th:text="${guess}"></span><br>
     The rolled number is <span th:text="${roll}"></span>;
@@ -27,6 +27,7 @@
 <h3 th:if="${result != null && !result}"> Try again.</h3>
 
 
-<footer th:replace="partials :: footer"/>
+<footer th:replace="partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
 </body>
 </html>

@@ -2,12 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Blog</title>
 </head>
 <body>
-<header th:replace="partials :: header"/>
-<nav th:replace="partials :: navbar" />
-    <p>view of all posts</p>
-<footer th:replace="partials :: footer"/>
+    <header th:replace="partials/partials :: header"></header>
+    <nav th:replace="partials/partials :: navbar"></nav>
+    <main class=""container>
+        <div class="card" th:each="post : ${posts}">
+            <h3 class="text-center" th:text="${post.title}"></h3>
+        </div>
+    </main>
+    <footer th:replace="partials/partials :: footer"></footer>
 </body>
 </html>
