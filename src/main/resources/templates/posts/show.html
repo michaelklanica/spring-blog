@@ -6,14 +6,14 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
-<header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+<header th:replace="partials/header :: header('here is a post')"></header>
 
-<main>
-    <div class="card">
-        <h2 th:text="${post.title}"></h2>
-        <p th:text="${post.body}"></p>
-    </div>
-</main>
+<!--<main class="container">-->
+<!--    <div class="card">-->
+<!--        <h3 class="text-center" th:text="${post.title}"></h3>-->
+<!--        <p th:text="${post.body}"></p>-->
+<!--    </div>-->
+<!--</main>-->
 
 <footer th:replace="partials/partials :: footer"></footer>
 <th:block th:include="partials/scripts :: scripts"></th:block>

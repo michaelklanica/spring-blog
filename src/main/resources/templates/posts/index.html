@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
-<header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+<header th:replace="partials/header :: header('Here are all of the posts')"></header>
 
 <main class="container">
     <div class="card" th:each="post : ${posts}">

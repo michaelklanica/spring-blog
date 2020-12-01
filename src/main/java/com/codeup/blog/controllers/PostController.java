@@ -26,24 +26,21 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model model) {
-        Post post = new Post("Post " + id, "Some stuff... " + id);
-        model.addAttribute("post", post);
+        model.addAttribute("post", postDao.findById(id));
+
         return "posts/show";
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String showCreateForm() {
-        return "view the form for creating a post";
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String submitPost() {
-        // This is just a hardcoded value for testing purposes
-        Post post = new Post("Hello", "blah blah blah");
+    public String submitPost(String title, String body) {
+        Post post = new Post(title, body);
         Post dbPost = postDao.save(post);
-        return "created a new post: " + dbPost.getId();
+        return "posts/index";
     }
 
 }

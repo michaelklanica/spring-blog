@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Create a Post')">
+    <meta charset="UTF-8">
+    <title>Roll the Dice</title>
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Create a Post')"></header>
+
+<form action="/posts/create" method="post">
+    <input type="text" name="title"/>
+    <textarea name="body"></textarea>
+    <button>Submit</button>
+</form>
+
+
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
+</body>
+</html>
