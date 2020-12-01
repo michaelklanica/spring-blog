@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/head :: head('Show Post')">
     <meta charset="UTF-8">
-    <title>Post</title>
+    <title>Roll the Dice</title>
 </head>
 <body>
-<header th:replace="partials :: header"/>
-<nav th:replace="partials :: navbar" />
-    <p>view of single post</p>
-<footer th:replace="partials :: footer"/>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+
+<main>
+    <div class="card">
+        <h2 th:text="${post.title}"></h2>
+        <p th:text="${post.body}"></p>
+    </div>
+</main>
+
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
 </body>
 </html>
