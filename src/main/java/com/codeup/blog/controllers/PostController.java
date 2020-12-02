@@ -39,7 +39,7 @@ public class PostController {
             @RequestParam(name = "body") String body) {
         Post post = new Post(title, body);
         Post dbPost = postDao.save(post);
-        return "posts/index";
+        return "redirect:/posts/" + dbPost.getId();
     }
 
 }
