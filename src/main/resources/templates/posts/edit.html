@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Create a Post')">
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+
+<main class="container">
+    <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="post">
+        Title:
+        <input name="title" id="name-ipt" th:value="${post.title}"/>
+        <br />
+        Description:
+        <input name="body" th:value="${post.body}"/>
+        <br />
+        <input class="btn btn-success" type="submit" />
+    </form>
+    <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" th:method="post">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+
+</main>
+
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
+</body>
+</html>
