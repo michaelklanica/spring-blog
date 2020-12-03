@@ -16,14 +16,19 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    @OneToOne
+    private User owner;
+
     public Post() {
     }
 
+    // READ
     public Post(String title, String body){
         this.title = title;
         this.body = body;
     };
 
+    // WRITE
     public Post(long id, String title, String body) {
         this.id = id;
         this.title = title;
@@ -52,6 +57,11 @@ public class Post {
         this.id = id;
     }
 
+    public void setOwner(User owner){
+        this.owner = owner;
+    }
+
+    public User getOwner(){return this.owner;}
 
 
 }
