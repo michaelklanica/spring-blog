@@ -8,9 +8,11 @@
 <nav th:replace="partials/navbar :: nav"></nav>
 <header th:replace="partials/header :: header('Create a Post')"></header>
 
-<form action="/posts/create" method="post">
-    <input type="text" name="title"/>
-    <textarea name="body"></textarea>
+<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+    Title:
+    <input th:field="*{title}"/>
+    Body:
+    <textarea th:field="*{body}"></textarea>
     <button>Submit</button>
 </form>
 
