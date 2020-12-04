@@ -1,5 +1,6 @@
 package com.codeup.blog.controllers;
 
+import com.codeup.blog.models.EmailService;
 import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
 import com.codeup.blog.repos.PostRepository;
@@ -13,11 +14,13 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
 
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -45,8 +48,9 @@ public class PostController {
     public String submitPost(@ModelAttribute Post postToBeSaved) {
         User userDb = userDao.getOne(1L);
         postToBeSaved.setOwner(userDb);
-        postDao.save(postToBeSaved);
-        return "redirect:/posts";
+        // THIS IS A GOOD PLACE TO ADD ANY RELATED DATA
+        Post dbPost = postDao.save(postToBeSaved);
+        return "redirect:/posts/" + dbPost.getId() ;
     }
 
     @PostMapping("/posts/{id}/delete")
@@ -62,15 +66,11 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPost(Post postToBeSaved,
-                           @PathVariable long id,
-                           @RequestParam String title,
-                           @RequestParam String body
-    ) {
-        Post dbPost = postDao.getOne(id);
-        dbPost.setTitle(title);
-        dbPost.setBody(body);
-        postDao.save(dbPost);
+    public String editPost(Post postToBeSaved) {
+        User userDb = userDao.getOne(1L);
+        postToBeSaved.setOwner(userDb);
+        postDao.save(postToBeSaved);
         return "redirect:/posts";
     }
+
 }
