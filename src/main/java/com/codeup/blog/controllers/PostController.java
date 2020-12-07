@@ -1,6 +1,6 @@
 package com.codeup.blog.controllers;
 
-import com.codeup.blog.models.EmailService;
+import com.codeup.blog.services.EmailService;
 import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
 import com.codeup.blog.repos.PostRepository;
@@ -33,8 +33,8 @@ public class PostController {
     public String showPost(@PathVariable long id, Model model) {
         model.addAttribute("post", postDao.getOne(id));
         Post post = postDao.getOne(id);
-        String email = post.getOwner().getEmail();
-        model.addAttribute("email", email);
+        String username = post.getOwner().getUsername();
+        model.addAttribute("username", username);
         return "posts/show";
     }
 
@@ -50,6 +50,7 @@ public class PostController {
         postToBeSaved.setOwner(userDb);
         // THIS IS A GOOD PLACE TO ADD ANY RELATED DATA
         Post dbPost = postDao.save(postToBeSaved);
+        emailService.prepareAndSend(dbPost, "Post has been created", "You have successfully sent an email.");
         return "redirect:/posts/" + dbPost.getId() ;
     }
 

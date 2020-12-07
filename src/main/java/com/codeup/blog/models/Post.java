@@ -13,7 +13,7 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "COMPOUND_TEXT")
     private String body;
 
     @OneToOne
