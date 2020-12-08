@@ -5,6 +5,7 @@ import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
 import com.codeup.blog.repos.PostRepository;
 import com.codeup.blog.repos.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String submitPost(@ModelAttribute Post postToBeSaved) {
-        User userDb = userDao.getOne(1L);
+        User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postToBeSaved.setOwner(userDb);
         // THIS IS A GOOD PLACE TO ADD ANY RELATED DATA
         Post dbPost = postDao.save(postToBeSaved);
@@ -68,7 +69,7 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String editPost(Post postToBeSaved) {
-        User userDb = userDao.getOne(1L);
+        User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postToBeSaved.setOwner(userDb);
         postDao.save(postToBeSaved);
         return "redirect:/posts";
