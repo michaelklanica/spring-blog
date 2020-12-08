@@ -59,7 +59,7 @@ public class PostsIntegrationTests {
             testUser = userDao.save(newUser);
         }
 
-        // Throws a Post request to /login and expect a redirection to the Ads index page after being logged in
+        // Throws a Post request to /login and expect a redirection to the Posts index page after being logged in
         httpSession = this.mvc.perform(post("/login").with(csrf())
                 .param("username", "testUser")
                 .param("password", "pass"))
